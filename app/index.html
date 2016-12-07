@@ -7,12 +7,18 @@
 <body>
 	<div class="container">
 		<div class="target">
-			<button type="button" id="btn_add_action">
-				Add Actioon
-			</button>
 			<div id="action_builder">
+				<textarea id="action" style="height:200px;width:200px;">
+					function(){
+						alert('Pagal');
+					}
+				</textarea>
 			</div>
-			<button type="button" id="btn_run_automation">
+			<button type="button" id="btn_add_action">
+				Add Action
+			</button>
+			
+			<button type="button" id="btn_start_automation">
 				Start Automation
 			</button>
 		</div>
@@ -21,13 +27,26 @@
 	<script src="js/copter.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function(){
-			var actionBuilder = $("#action_builder"), btnAddAction = $("#btn_add_action"), btnStartAutomation = $("#btn_start_automation");
+			var actionBuilder = $("#action_builder"), btnAddAction = $("#btn_add_action"), btnStartAutomation = $("#btn_start_automation"), steps = [];
 			btnAddAction.on("click",function(e){
-				console.log(e);
+				var textArea = document.getElementById("action");
+				if(textArea){
+					if(textArea.value.indexOf("function") < 0){
+						alert("You need to provide a function like shown in the example below.\n\n function(){\n//body goes here...\n}")
+						return false;
+					}
+
+					steps.push(textArea.value);
+					console.log(steps);
+				}
 			});
 
 			btnStartAutomation.on("click",function(e){
-				conosle.log(e);
+				if (steps.length) {
+					for (var i = 0; i < steps.length; i++) {
+						steps[i] && eval("("+steps[i]+")")();
+					}
+				}
 			});
 
 			$(".target").copter({

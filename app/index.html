@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>
+	</title>
+</head>
+<body>
+	<div class="container">
+		<div class="target">
+			<button type="button" id="btn_add_action">
+				Add Actioon
+			</button>
+			<div id="action_builder">
+			</div>
+			<button type="button" id="btn_run_automation">
+				Start Automation
+			</button>
+		</div>
+	</div>
+	<script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
+	<script src="js/copter.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function(){
+			var actionBuilder = $("#action_builder"), btnAddAction = $("#btn_add_action"), btnStartAutomation = $("#btn_start_automation");
+			btnAddAction.on("click",function(e){
+				console.log(e);
+			});
+
+			btnStartAutomation.on("click",function(e){
+				conosle.log(e);
+			});
+
+			$(".target").copter({
+				name: "Copter v1"
+			});
+		});
+	</script>
+</body>
+</html>

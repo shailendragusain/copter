@@ -43,11 +43,18 @@
 
 			btnStartAutomation.on("click",function(e){
 				if (steps.length) {
-					for (var i = 0; i < steps.length; i++) {
-						steps[i] && eval("("+steps[i]+")")();
+				var i = 0;
+					if(i < steps.length){
+						setInterval(function(){ automate(i); i++;}, 2000);
 					}
 				}
 			});
+			function automate(index){
+				if(index >= steps.length){
+					return;
+				}
+				steps[index] && eval("("+steps[index]+")")();
+			}
 
 			$(".target").copter({
 				name: "Copter v1"

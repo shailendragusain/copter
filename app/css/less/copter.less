@@ -1,0 +1,32 @@
+.copter{
+	position: relative;
+	height: 40px;
+	width: 200px;
+	select{
+		display: none;
+	}
+	ul.copter-dropdown{
+		display: none;
+		margin:0;
+		padding:0;
+		list-style: none;
+		max-height: 200px;
+		overflow: hidden;
+		li{
+			display: block;
+			&:hover{
+				background-color: #88f;
+			}
+		}
+	}
+	&.open {
+		ul.copter-dropdown{
+			display: block;
+			position: absolute;
+			z-index: 9999;
+		    width: 100%;
+		    overflow-x: hidden;
+		    overflow-y: auto;
+		}
+	}
+}

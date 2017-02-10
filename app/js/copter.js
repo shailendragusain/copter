@@ -43,8 +43,8 @@
 			});
 
 			select.wrap(copter);
-			searchBox.insertAfter(select);
 			dropDown.insertAfter(select);
+			searchBox.insertAfter(select)
 
 			bindEventHandlers(searchBox);
 		}
@@ -58,6 +58,19 @@
 			sel.on("blur",function(e) {
 				var cop = $(this).parent(".copter");
 				cop && cop.removeClass("open");
+			});
+
+			sel.on("input", function(e) {
+				var text = $(this).val();
+				var copItem = $(this).parent(".copter").find(".copter-dropdown li");
+				if(copItem){
+					copItem.each(function(index, item) {
+						$(item).addClass("hidden");
+						if($(item).text().toString().toLowerCase().indexOf(text.toLowerCase()) >= 0){
+							$(item).removeClass("hidden");
+						}
+					});
+				}
 			});
 		}
 
